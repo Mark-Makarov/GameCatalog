@@ -1,11 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import axios from "axios";
 import styled from 'styled-components';
 
 const SearchWrapper = styled.div`
   display: flex;
+	justify-content: center;
+	flex-direction: row;
   align-items: center;
-  margin-bottom: 1rem;
+  margin: 10px;
 `;
 
 const SearchInput = styled.input`
@@ -13,39 +15,35 @@ const SearchInput = styled.input`
   border-radius: 5px;
   font-size: 1rem;
   padding: 0.5rem;
-  width: 100%;
-  max-width: 500px;
-
+  height: 40px;
+  width: 220px;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    box-shadow: 0 0 10px #fff;
+  }
   &:focus {
-    outline: none;
-    border-color: red;
+    box-shadow: 0 0 10px #fff;
   }
 `;
 
 const SearchButton = styled.button`
-  background-color: #de9e9e;
+  background-color: palevioletred;
   border: none;
   border-radius: 5px;
   color: white;
-  font-size: 1rem;
+  height: 40px;
+  font-size: 1.2rem;
   font-weight: bold;
-  margin-left: 1rem;
-  padding: 0.5rem 1rem;
+  margin-left: 5px;
+  padding: 5px 10px;
 
   &:hover {
     cursor: pointer;
-    background-color: white;
+    box-shadow: 0 0 10px #fff;
   }
 `;
 
-const Search = ({onSearch}) => {
-	
-	useEffect(() => {
-			axios.get(`https://api.rawg.io/api/games?key=856574f363d844d5935677771d6dd6bc&search=grand`)
-				.then(res => {
-				
-				})
-	}, [])
+const Search = ({search}) => {
 	
 	const [query, setQuery] = useState('');
 	
@@ -54,20 +52,22 @@ const Search = ({onSearch}) => {
 		const results = await axios.get(
 			`https://api.rawg.io/api/games?key=856574f363d844d5935677771d6dd6bc&search=${query}`
 		);
-		onSearch(results.data.results);
+		search(results.data.results);
 		console.log(results.data.results)
 	};
+	
+	
 	
 	return (
 		<SearchWrapper>
 			<form onSubmit={handleSubmit}>
 				<SearchInput
 					type="text"
-					placeholder="Search for games"
+					placeholder="Поиск игр по названию"
 					value={query}
 					onChange={(e) => setQuery(e.target.value)}
 				/>
-				<SearchButton type="submit">Search</SearchButton>
+				<SearchButton type="submit">Поиск</SearchButton>
 			</form>
 		</SearchWrapper>
 	);
