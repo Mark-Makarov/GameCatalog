@@ -24,7 +24,7 @@ const glow = keyframes`
 
 const Title = styled.h1`
   font-size: 40px;
-  margin: 30px 0;
+  margin-bottom: 30px;
   animation: ${glow} 5s ease-in-out infinite;
 `;
 

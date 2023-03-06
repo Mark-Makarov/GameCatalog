@@ -80,6 +80,10 @@ const GameCatalog = () => {
 		} else {
 			const sorted = [...data].sort((a, b) => (!dir ? a[prop] > b[prop] : a[prop] < b[prop]) ? -1 : 1)
 			setData(sorted)
+			window.scrollTo({
+				top: 0,
+				behavior: 'smooth'
+			});
 		}
 	}
 	
