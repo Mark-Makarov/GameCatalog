@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {glow} from "@/styles/animations";
 import Link from "next/link";
 import { useState } from "react";
 import Loader from "@/components/Loader";
@@ -8,6 +9,7 @@ const Tile = styled.li`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
   max-width: 300px;
   height: 320px;
   border: 3px solid #ccc;
@@ -16,17 +18,21 @@ const Tile = styled.li`
   color: white;
   text-decoration: none !important;
   transition: all 0.2s ease-in-out;
+  margin-bottom: 0;
+  margin-top: auto;
 
   &:hover {
     box-shadow: 0 0 10px #fff;
     transform: translateY(-5px);
+
+    animation: ${glow} 5s ease-in-out infinite;
   }
 `;
 
 const Title = styled.h2`
   font-size: 20px;
   font-weight: bold;
-  margin: 10px 0 5px;
+  margin: 10px 0;
 `;
 
 const Poster = styled.img`
@@ -38,20 +44,25 @@ const Poster = styled.img`
 `;
 
 const Rating = styled.p`
-  font-size: 18px;
+  font-size: 20px;
   margin: 5px 0;
 `;
 
 const Star = styled.span`
-  display: inline-block;
-  color: #FFD700;
+  color: #ffd700;
+  font-size: 20px;
   margin-left: 5px;
-  font-size: 18px;
+  @media (max-width: 850px) {
+    font-size: 18px;
+  }
 `;
 
 const ReleaseDate = styled.p`
   font-size: 18px;
   margin: 5px 0;
+  @media (max-width: 850px) {
+    font-size: 14px;
+  }
 `;
 
 const GameCard = ({name, backgroundImg, rating, released, id}) => {

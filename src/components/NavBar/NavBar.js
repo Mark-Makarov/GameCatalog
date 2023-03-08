@@ -1,26 +1,9 @@
 import React, { useState } from 'react';
 import Search from "@/components/NavBar/Search";
 import PlatformsFilter from "@/components/NavBar/PlatformsFilter";
-import styled, {keyframes} from "styled-components";
+import styled from "styled-components";
+import {appear} from "@/styles/animations";
 import Sort from "@/components/NavBar/Sort";
-
-const appear = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
-const disappear = keyframes`
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-`;
 
 const NavBarWrapper = styled.div`
   position: fixed;

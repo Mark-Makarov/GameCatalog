@@ -19,6 +19,7 @@ const SearchInput = styled.input`
   width: 220px;
   transition: all 0.2s ease-in-out;
   &:hover {
+    cursor: pointer;
     box-shadow: 0 0 10px #fff;
   }
   &:focus {
@@ -27,7 +28,7 @@ const SearchInput = styled.input`
 `;
 
 const SearchButton = styled.button`
-  background-color: palevioletred;
+  background-color: #8c46c0;
   border: none;
   border-radius: 5px;
   color: white;
@@ -36,6 +37,7 @@ const SearchButton = styled.button`
   font-weight: bold;
   margin-left: 5px;
   padding: 5px 10px;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
     cursor: pointer;
@@ -49,14 +51,9 @@ const Search = ({search}) => {
 	
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const results = await axios.get(
-			`https://api.rawg.io/api/games?key=856574f363d844d5935677771d6dd6bc&search=${query}`
-		);
-		search(results.data.results);
-		console.log(results.data.results)
+		const res = await axios.get(`/api/search?query=${query}`);
+		search(res.data);
 	};
-	
-	
 	
 	return (
 		<SearchWrapper>

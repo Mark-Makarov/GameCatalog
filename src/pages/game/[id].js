@@ -1,31 +1,24 @@
-import React, {useEffect, useState} from 'react';
-import {useRouter} from "next/router";
 import axios from "axios";
-import styled, {keyframes} from 'styled-components';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { FreeMode, Navigation, Pagination } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import styled from 'styled-components';
+import {appear, glow} from "@/styles/animations";
+import Slider from "@/components/Slider";
 
-
-const glow = keyframes`
-  0% {
-    text-shadow: 0 0 10px #fff, 0 0 60px #ff00de;
-  }
-  50% {
-    text-shadow: 0 0 40px #fff,0 0 5px #ff00de;
-  }
-  100% {
-    text-shadow: 0 0 10px #fff, 0 0 60px #ff00de;
-  }
+const GameDetailsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  animation: ${appear} 1s ease-in-out;
 `;
 
 const Title = styled.h1`
   font-size: 40px;
   margin-bottom: 30px;
   animation: ${glow} 5s ease-in-out infinite;
+  @media (max-width: 630px) {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
 `;
 
 const Description = styled.p`
@@ -33,114 +26,116 @@ const Description = styled.p`
   font-size: 20px;
   line-height: 1.7;
   margin: 30px 0;
-`;
-
-const Link = styled.a`
-  font-size: 20px;
-  color: #0070f3;
-  text-decoration: none;
+  @media (max-width: 600px) {
+    font-size: 15px;
+    margin: 15px 0;
+  }
 `;
 
 const Poster = styled.img`
   border-radius: 15px;
-  max-width: 80%;
+  max-width: 90%;
   object-fit: contain;
   margin-bottom: 10px;
+  animation: ${glow} 5s ease-in-out infinite;
+  @media (max-width: 600px) {
+    max-width: 100%;
+  }
 `;
 
 const Rating = styled.p`
+  display: flex;
+  align-items: center;
   font-size: 30px;
   margin: 5px 0;
+  animation: ${glow} 5s ease-in-out infinite;
+  @media (max-width: 600px) {
+    font-size: 20px;
+  }
 `;
 
 const Star = styled.span`
-  display: inline-block;
-  color: #FFD700;
-  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffd700;
   font-size: 30px;
+  margin-left: 5px;
+  @media (max-width: 600px) {
+    font-size: 18px;
+  }
 `;
 
 const ReleaseDate = styled.p`
+  animation: ${glow} 5s ease-in-out infinite;
   font-size: 30px;
   margin: 5px 0;
+  @media (max-width: 600px) {
+    font-size: 20px;
+  }
 `;
 
-SwiperCore.use([FreeMode, Navigation, Pagination]);
-
-const GameDetailsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
+const Link = styled.a`
+  font-size: 30px;
+  color: #c995ff;
+  text-decoration: none;
+  animation: ${glow} 5s ease-in-out infinite;
+  @media (max-width: 600px) {
+    font-size: 20px;
+  }
 `;
 
-const SliderImage = styled.img`
-  max-height: 550px;
-  border-radius: 10px;
-  max-width: 100%;
-  box-sizing: border-box;
-  display: block;
-  margin: 0 auto;
-	user-select: none;
+const BackButton = styled.button`
+  background-color: #8c46c0;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  width: 80%;
+  min-height: 60px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-left: 5px;
+  padding: 5px 10px;
+  margin-top: 40px;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px #fff;
+  }
 `;
 
-const SliderWrapper = styled.div`
-  width: 100%;
-  margin: 30px 0;
-`;
-
-
-const Id = () => {
-	const router = useRouter();
-	const gameId = router.query.id;
-	
-	const [data, setData] = useState([])
-	const [screenshots, setScreenshots] = useState([])
-	
-	useEffect(() => {
-		async function fetchData() {
-			if (gameId) {
-				const [gameRes, screenshotsRes] = await Promise.all([
-					axios.get(`https://api.rawg.io/api/games/${gameId}?key=856574f363d844d5935677771d6dd6bc`),
-					axios.get(`https://api.rawg.io/api/games/${gameId}/screenshots?key=856574f363d844d5935677771d6dd6bc`)
-				]);
-				setData(gameRes.data);
-				setScreenshots(screenshotsRes.data.results);
-			}
-		}
-		fetchData();
-	}, [gameId]);
-	
+const Id = ({gameData}) => {
 	
 	return (
 		<GameDetailsWrapper>
-			<Title>{data.name}</Title>
-			<Poster
-				src={data.background_image}
-				alt={data.name}
-			/>
-			<Rating>Рейтинг: {data.rating}<Star>★</Star></Rating>
-			<ReleaseDate>Дата выхода: {data.released}</ReleaseDate>
-			<Description>{data.description_raw}</Description>
-			<Link href={data.website} target="_blank" rel="noopener">Посетить сайт игры</Link>
-			<SliderWrapper>
-				<Swiper
-					spaceBetween={10}
-					slidesPerView={1}
-					freeMode={true}
-					navigation={true}
-					loop={true}
-					pagination={{ clickable: true }}
-				>
-					{screenshots.map((screenshot, index) => (
-						<SwiperSlide key={index}>
-							<SliderImage src={screenshot.image} alt={`Screenshot ${index}`} />
-						</SwiperSlide>
-					))}
-				</Swiper>
-			</SliderWrapper>
+			<Title>{gameData.name}</Title>
+			<Poster src={gameData.background_image} alt={gameData.name}/>
+			<Rating>Рейтинг: {gameData.rating}<Star>⭐</Star></Rating>
+			<ReleaseDate>Дата выхода: {gameData.released}</ReleaseDate>
+			<Description>{gameData.description_raw}</Description>
+			<Slider screenshots={gameData.screenshots}/>
+			<Link href={gameData.website} target="_blank" rel="noopener">Посетить сайт игры</Link>
+			<BackButton onClick={() => window.history.back()}>Вернуться на главную</BackButton>
 		</GameDetailsWrapper>
 	);
 };
+
+export async function getServerSideProps(context) {
+	const {id} = context.query;
+	const baseURL = `http://${context.req.headers.host}`;
+	const apiUrl = `${baseURL}/api/gameData?id=${id}`;
+	
+	try {
+		const response = await axios.get(apiUrl);
+		const gameData = response.data;
+		return {props: {gameData}};
+	} catch (error) {
+		return {
+			props: {gameData: 'Error'},
+			notFound: true,
+		};
+	}
+}
 
 export default Id;

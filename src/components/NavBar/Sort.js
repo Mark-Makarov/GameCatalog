@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+const SortWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+`;
+
 const Button = styled.button`
 	display: flex;
 	align-items: center;
 	flex-direction: column;
   background-color: transparent;
   border: none;
-
   cursor: pointer;
   font-size: 20px;
   font-weight: 600;
   margin-right: 10px;
   color: ${({ active }) => (active ? '#f44336' : '#00ff3b')};
-`;
-
-const SortWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 10px;
 `;
 
 const ResetButton = styled.button`

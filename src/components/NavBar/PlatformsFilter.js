@@ -18,22 +18,20 @@ const PlatformSelectWrapper = styled.select`
 `;
 
 const PlatformsFilter = ({filter}) => {
-	
+	const [currentPlatform, setCurrentPlatform] = useState(4)
 	const [platforms, setPlatforms] = useState([])
 	
-	useEffect(() => {
-		axios.get(`https://api.rawg.io/api/platforms?key=856574f363d844d5935677771d6dd6bc`)
-			.then(res => {
-				setPlatforms(res.data.results)
-			})
+	useEffect( () => {
+		axios.get('/api/platformsList').then(res => setPlatforms(res.data));
 	}, [])
 	
 	const onChange = (e) => {
 		filter(e.target.value)
+		setCurrentPlatform(e.target.value)
 	}
-	
+	console.log()
 	return (
-		<PlatformSelectWrapper onChange={onChange}>
+		<PlatformSelectWrapper onChange={onChange} value={currentPlatform}>
 			{platforms.map((platform) => (
 				<option key={platform.id} value={platform.id}>
 					{platform.name}
