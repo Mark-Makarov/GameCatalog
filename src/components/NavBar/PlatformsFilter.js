@@ -8,7 +8,7 @@ const PlatformSelectWrapper = styled.select`
   border: 2px solid #ccc;
   font-size: 1rem;
 	margin: 10px;
-  color: white;
+  color: black;
 	height: 40px;
 	width: 220px;
   transition: all 0.2s ease-in-out;
