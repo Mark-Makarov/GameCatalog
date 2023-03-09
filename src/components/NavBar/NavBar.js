@@ -22,7 +22,6 @@ const ComponentsWrapper = styled.div `
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
-  animation: ${appear} 0.5s ease-in-out;
 	
   @media (max-width: 750px) {
     flex-direction: column;
