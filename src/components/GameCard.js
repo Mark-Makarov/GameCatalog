@@ -1,8 +1,12 @@
 import styled from 'styled-components';
-import {glow} from "@/styles/animations";
+import {appear, glow} from "@/styles/animations";
 import Link from "next/link";
 import { useState } from "react";
 import Loader from "@/components/Loader";
+
+const TileWrapper = styled.div`
+  animation: ${appear} 0.7s ease-in-out;
+`
 
 const Tile = styled.li`
   display: flex;
@@ -74,6 +78,7 @@ const GameCard = ({name, backgroundImg, rating, released, id}) => {
 	
 	return (
 		<Link href={`/game/${id}`} passHref>
+			<TileWrapper>
 			<Tile>
 				<Title>{name}</Title>
 				{loading ? <Loader /> : null}
@@ -86,6 +91,7 @@ const GameCard = ({name, backgroundImg, rating, released, id}) => {
 				<Rating>Рейтинг: {rating}<Star>⭐</Star></Rating>
 				<ReleaseDate>Дата выхода: {released}</ReleaseDate>
 			</Tile>
+			</TileWrapper>
 		</Link>
 	);
 };

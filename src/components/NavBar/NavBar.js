@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import Search from "@/components/NavBar/Search";
 import PlatformsFilter from "@/components/NavBar/PlatformsFilter";
+import Sort from "@/components/NavBar/Sort";
 import styled from "styled-components";
 import {appear} from "@/styles/animations";
-import Sort from "@/components/NavBar/Sort";
 
 const NavBarWrapper = styled.div`
   position: fixed;
@@ -12,7 +12,6 @@ const NavBarWrapper = styled.div`
   width: 100%;
   margin-top: 5px;
   z-index: 999;
-  animation: ${appear} 1s ease-in-out;
 `
 
 const ComponentsWrapper = styled.div `
@@ -22,6 +21,7 @@ const ComponentsWrapper = styled.div `
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
+  animation: ${appear} 0.5s ease-in-out;
 	
   @media (max-width: 750px) {
     flex-direction: column;
