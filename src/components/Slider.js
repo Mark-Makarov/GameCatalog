@@ -23,7 +23,7 @@ const SliderImage = styled.img`
 
 const SliderWrapper = styled.div`
   width: 100%;
-  margin: 30px 0;
+  margin: 10px 0;
 `;
 
 

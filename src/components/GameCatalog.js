@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {appear, glow} from "@/styles/animations";
 
 const GameCatalogWrapper = styled.div`
+	width: 100%;
   justify-content: center;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -11,15 +12,14 @@ const GameCatalogWrapper = styled.div`
   padding-top: 80px;
   padding-bottom: 30px;
   animation: ${appear} 1s ease-in-out;
-
-
+	
   @media (max-width: 600px) {
     padding-top: 10px;
     grid-template-columns: repeat(auto-fit, minmax(300px, calc(100% / 2)));
   }
 
   @media (min-width: 600px) {
-    grid-template-columns: repeat(auto-fit, minmax(200px, calc(100% / 3)));
+    grid-template-columns: repeat(auto-fit, minmax(250px, calc(100% / 3)));
   }
 
   @media (min-width: 1024px) {
@@ -34,6 +34,9 @@ const NoResultsWrapper = styled.div`
 	margin-top: 100px;
 	font-size: 30px;
   animation: ${glow} 5s ease-in-out infinite;
+  @media (max-width: 400px) {
+    font-size: 25px;
+  }
 `
 
 const GameCatalog = ({data}) => {

@@ -20,7 +20,7 @@ const PlatformSelectWrapper = styled.select`
 const PlatformsFilter = ({filter}) => {
 	const [currentPlatform, setCurrentPlatform] = useState(4)
 	const [platforms, setPlatforms] = useState([])
-	
+
 	useEffect( () => {
 		axios.get('/api/platformsList').then(res => setPlatforms(res.data));
 	}, [])
@@ -29,7 +29,7 @@ const PlatformsFilter = ({filter}) => {
 		filter(e.target.value)
 		setCurrentPlatform(e.target.value)
 	}
-	console.log()
+
 	return (
 		<PlatformSelectWrapper onChange={onChange} value={currentPlatform}>
 			{platforms.map((platform) => (

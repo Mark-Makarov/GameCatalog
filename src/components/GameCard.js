@@ -10,13 +10,12 @@ const Tile = styled.li`
   align-items: center;
   justify-content: center;
   text-align: center;
-  max-width: 300px;
+	max-width: 400px;
   height: 320px;
-  border: 3px solid #ccc;
   border-radius: 15px;
   padding: 13px;
   color: white;
-  text-decoration: none !important;
+	background-color: #202020;
   transition: all 0.2s ease-in-out;
   margin-bottom: 0;
   margin-top: auto;
@@ -24,7 +23,6 @@ const Tile = styled.li`
   &:hover {
     box-shadow: 0 0 10px #fff;
     transform: translateY(-5px);
-
     animation: ${glow} 5s ease-in-out infinite;
   }
 `;
@@ -39,7 +37,6 @@ const Poster = styled.img`
   border-radius: 10%;
   width: 100%;
   height: 160px;
-  object-fit: contain;
   margin-bottom: 10px;
 `;
 
@@ -62,6 +59,9 @@ const ReleaseDate = styled.p`
   margin: 5px 0;
   @media (max-width: 850px) {
     font-size: 14px;
+  }
+  @media (max-width: 1350px) {
+    font-size: 16px;
   }
 `;
 

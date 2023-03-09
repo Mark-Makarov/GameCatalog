@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import axios from "axios";
 import NavBar from "@/components/NavBar/NavBar";
 import Loader from "@/components/Loader";
@@ -42,19 +42,19 @@ const MainPage = () => {
 		}
 	}
 	
-	const handleSearch = (query) => {
+	const handleSearch = useCallback((query) => {
 		setData(query)
-	};
+	}, [])
 	
-	const handleFilter = (query) => {
+	const handleFilter = useCallback((query) => {
 		setPlatform(query)
 		setFetching(true)
 		setData([])
 		setTotalCount(0)
 		setPage(1)
-	}
+	}, [])
 	
-	const handleSorting = (prop, dir) => {
+	const handleSorting = useCallback((prop, dir) => {
 		if (prop === 'reset') {
 			setFetching(true)
 			setData([])
@@ -68,7 +68,7 @@ const MainPage = () => {
 				behavior: 'smooth'
 			});
 		}
-	}
+	}, [data])
 
 	return (
 		<>

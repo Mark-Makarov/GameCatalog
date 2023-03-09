@@ -21,17 +21,6 @@ const Title = styled.h1`
   }
 `;
 
-const Description = styled.p`
-  text-align: center;
-  font-size: 20px;
-  line-height: 1.7;
-  margin: 30px 0;
-  @media (max-width: 600px) {
-    font-size: 15px;
-    margin: 15px 0;
-  }
-`;
-
 const Poster = styled.img`
   border-radius: 15px;
   max-width: 90%;
@@ -75,11 +64,46 @@ const ReleaseDate = styled.p`
   }
 `;
 
+const DescriptionTitle = styled.p`
+	display: flex;
+	justify-content: center;
+	width: 100%;
+  animation: ${glow} 5s ease-in-out infinite;
+  font-size: 30px;
+	margin-top: 20px;
+  @media (max-width: 600px) {
+    font-size: 20px;
+  }
+`;
+
+const Description = styled.p`
+  text-align: center;
+  font-size: 20px;
+  line-height: 1.7;
+  margin: 10px 0;
+  @media (max-width: 600px) {
+    font-size: 15px;
+    margin: 15px 0;
+  }
+`;
+
 const Link = styled.a`
   font-size: 30px;
   color: #c995ff;
   text-decoration: none;
   animation: ${glow} 5s ease-in-out infinite;
+  @media (max-width: 600px) {
+    font-size: 20px;
+  }
+`;
+
+const ScreenShotsTitle = styled.p`
+	display: flex;
+	justify-content: center;
+	width: 100%;
+  animation: ${glow} 5s ease-in-out infinite;
+  font-size: 30px;
+	margin-top: 20px;
   @media (max-width: 600px) {
     font-size: 20px;
   }
@@ -113,7 +137,9 @@ const Id = ({gameData}) => {
 			<Poster src={gameData.background_image} alt={gameData.name}/>
 			<Rating>Рейтинг: {gameData.rating}<Star>⭐</Star></Rating>
 			<ReleaseDate>Дата выхода: {gameData.released}</ReleaseDate>
+			<DescriptionTitle>Описание:</DescriptionTitle>
 			<Description>{gameData.description_raw}</Description>
+			<ScreenShotsTitle>Скриншоты игры:</ScreenShotsTitle>
 			<Slider screenshots={gameData.screenshots}/>
 			<Link href={gameData.website} target="_blank" rel="noopener">Посетить сайт игры</Link>
 			<BackButton onClick={() => window.history.back()}>Вернуться на главную</BackButton>

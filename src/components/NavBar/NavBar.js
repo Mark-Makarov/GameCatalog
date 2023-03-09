@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Search from "@/components/NavBar/Search";
 import PlatformsFilter from "@/components/NavBar/PlatformsFilter";
 import styled from "styled-components";

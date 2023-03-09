@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const SortWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: center;;
   margin: 10px;
 `;
 
 const Button = styled.button`
-	display: flex;
-	align-items: center;
-	flex-direction: column;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   background-color: transparent;
   border: none;
   cursor: pointer;
   font-size: 20px;
   font-weight: 600;
   margin-right: 10px;
-  color: ${({ active }) => (active ? '#f44336' : '#00ff3b')};
+  color: ${({active}) => (active ? '#f44336' : '#00ff3b')};
 `;
 
 const ResetButton = styled.button`
@@ -26,18 +26,18 @@ const ResetButton = styled.button`
   cursor: pointer;
   font-size: 20px;
   font-weight: 600;
-  color: ${({ disabled }) => (disabled ? '#DEDEF666' : '#f44336')};
-  pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
+  color: ${({disabled}) => (disabled ? '#DEDEF666' : '#f44336')};
+  pointer-events: ${({disabled}) => (disabled ? 'none' : 'auto')};
 `;
 
-const Sort = ({ sort }) => {
+const Sort = ({sort}) => {
 	const [sortType, setSortType] = useState('');
 	const [sortOrder, setSortOrder] = useState('');
 	
 	const handleSort = (type) => {
-		let order = 'down'
+		let order
 		if (type === sortType) {
-		order = sortOrder === 'down' ? 'up' : 'down';
+			order = sortOrder === 'down' ? 'up' : 'down';
 		} else {
 			order = 'down';
 		}
@@ -51,27 +51,22 @@ const Sort = ({ sort }) => {
 		setSortOrder('');
 		sort('reset')
 	};
-
+	
 	return (
 		<SortWrapper>
 			<Button
 				active={sortType === 'rating' && sortOrder === 'down'}
-				onClick={() => handleSort('rating')}
-			>
-				⭐{' '}
-				{sortType === 'rating' ? (sortOrder === 'down' ? '▼' : '▲') : ''}
+				onClick={() => handleSort('rating')}>
+				⭐ {sortType === 'rating' ? (sortOrder === 'down' ? ' ▼' : ' ▲') : ''}
 			</Button>
 			<Button
 				active={sortType === 'released' && sortOrder === 'down'}
-				onClick={() => handleSort('released')}
-			>
-				📅{' '}
-				{sortType === 'released' ? (sortOrder === 'down' ? '▼' : '▲') : ''}
+				onClick={() => handleSort('released')}>
+				📅 {sortType === 'released' ? (sortOrder === 'down' ? ' ▼' : ' ▲') : ''}
 			</Button>
 			<ResetButton
 				disabled={!sortType && !sortOrder}
-				onClick={resetSort}
-			>
+				onClick={resetSort}>
 				❌
 			</ResetButton>
 		</SortWrapper>
