@@ -47,7 +47,7 @@ const ToggleNavBarButton = styled.button`
   }
 `
 
-const NavBar = ({search, filter, sort}) => {
+const NavBar = ({getUserSearch, getGamesForPlatform, sortGamesByDateAndRating}) => {
 	const [isNavBarOpen, setIsNavBarOpen] = useState(false);
 	
 	const handleToggleNavBar = () => {
@@ -58,9 +58,9 @@ const NavBar = ({search, filter, sort}) => {
 		<>
 			<NavBarWrapper>
 				<ComponentsWrapper isNavBarOpen={isNavBarOpen}>
-					<Search search={search}/>
-					<PlatformsFilter filter={filter}/>
-					<Sort sort={sort}/>
+					<Search getUserSearch={getUserSearch}/>
+					<PlatformsFilter getGamesForPlatform={getGamesForPlatform}/>
+					<Sort sortGamesByDateAndRating={sortGamesByDateAndRating}/>
 				</ComponentsWrapper>
 			</NavBarWrapper>
 			<ToggleNavBarButton onClick={handleToggleNavBar}>

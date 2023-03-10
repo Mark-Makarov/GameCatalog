@@ -8,7 +8,8 @@ const PlatformSelectWrapper = styled.select`
   border: 2px solid #ccc;
   font-size: 1rem;
 	margin: 10px;
-  color: black;
+	background-color: #3B3B3B;
+  color: #fff;
 	height: 40px;
 	width: 220px;
   transition: all 0.2s ease-in-out;
@@ -17,7 +18,7 @@ const PlatformSelectWrapper = styled.select`
   }
 `;
 
-const PlatformsFilter = ({filter}) => {
+const PlatformsFilter = ({getGamesForPlatform}) => {
 	const [currentPlatform, setCurrentPlatform] = useState(4)
 	const [platforms, setPlatforms] = useState([])
 
@@ -26,7 +27,7 @@ const PlatformsFilter = ({filter}) => {
 	}, [])
 	
 	const onChange = (e) => {
-		filter(e.target.value)
+		getGamesForPlatform(e.target.value)
 		setCurrentPlatform(e.target.value)
 	}
 

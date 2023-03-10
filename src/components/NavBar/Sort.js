@@ -30,7 +30,7 @@ const ResetButton = styled.button`
   pointer-events: ${({disabled}) => (disabled ? 'none' : 'auto')};
 `;
 
-const Sort = ({sort}) => {
+const Sort = ({sortGamesByDateAndRating}) => {
 	const [sortType, setSortType] = useState('');
 	const [sortOrder, setSortOrder] = useState('');
 	
@@ -43,13 +43,13 @@ const Sort = ({sort}) => {
 		}
 		setSortType(type);
 		setSortOrder(order);
-		sort(type, order === 'up');
+		sortGamesByDateAndRating(type, order === 'up');
 	};
 	
 	const resetSort = () => {
 		setSortType('');
 		setSortOrder('');
-		sort('reset')
+		sortGamesByDateAndRating('reset')
 	};
 	
 	return (

@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import axios from "axios";
 import styled from 'styled-components';
 
@@ -15,6 +15,8 @@ const SearchInput = styled.input`
   border-radius: 5px;
   font-size: 1rem;
   padding: 0.5rem;
+  background-color: #3B3B3B;
+  color: #fff;
   height: 40px;
   width: 220px;
   transition: all 0.2s ease-in-out;
@@ -45,14 +47,14 @@ const SearchButton = styled.button`
   }
 `;
 
-const Search = ({search}) => {
+const Search = ({getUserSearch}) => {
 	
 	const [query, setQuery] = useState('');
 	
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const res = await axios.get(`/api/search?query=${query}`);
-		search(res.data);
+		getUserSearch(res.data);
 	};
 	
 	return (

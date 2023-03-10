@@ -42,11 +42,11 @@ const MainPage = () => {
 		}
 	}
 	
-	const handleSearch = useCallback((query) => {
+	const getUserSearch = useCallback((query) => {
 		setData(query)
 	}, [])
 	
-	const handleFilter = useCallback((query) => {
+	const getGamesForPlatform = useCallback((query) => {
 		setPlatform(query)
 		setFetching(true)
 		setData([])
@@ -54,7 +54,7 @@ const MainPage = () => {
 		setPage(1)
 	}, [])
 	
-	const handleSorting = useCallback((prop, dir) => {
+	const sortGamesByDateAndRating = useCallback((prop, dir) => {
 		if (prop === 'reset') {
 			setFetching(true)
 			setData([])
@@ -72,7 +72,7 @@ const MainPage = () => {
 
 	return (
 		<>
-			<NavBar search={handleSearch} filter={handleFilter} sort={handleSorting}/>
+			<NavBar getUserSearch={getUserSearch} getGamesForPlatform={getGamesForPlatform} sortGamesByDateAndRating={sortGamesByDateAndRating}/>
 			<GameCatalog data={data}/>
 			{(showLoader || data.length) ? <Loader little/> : <Loader fullScreen/>}
 		</>

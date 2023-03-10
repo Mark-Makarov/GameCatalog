@@ -87,16 +87,6 @@ const Description = styled.p`
   }
 `;
 
-const Link = styled.a`
-  font-size: 30px;
-  color: #c995ff;
-  text-decoration: none;
-  animation: ${glow} 5s ease-in-out infinite;
-  @media (max-width: 600px) {
-    font-size: 20px;
-  }
-`;
-
 const ScreenShotsTitle = styled.p`
 	display: flex;
 	justify-content: center;
@@ -109,12 +99,22 @@ const ScreenShotsTitle = styled.p`
   }
 `;
 
+
+const Link = styled.a`
+  font-size: 30px;
+  color: #c995ff;
+  text-decoration: none;
+  animation: ${glow} 5s ease-in-out infinite;
+  @media (max-width: 600px) {
+    font-size: 20px;
+  }
+`;
+
 const BackButton = styled.button`
   background-color: #8c46c0;
   border: none;
   border-radius: 5px;
   color: white;
-  width: 80%;
   min-height: 60px;
   font-size: 1.2rem;
   font-weight: bold;
@@ -142,7 +142,7 @@ const Id = ({gameData}) => {
 			<ScreenShotsTitle>Скриншоты игры:</ScreenShotsTitle>
 			<Slider screenshots={gameData.screenshots}/>
 			<Link href={gameData.website} target="_blank" rel="noopener">Посетить сайт игры</Link>
-			<BackButton onClick={() => window.history.back()}>Вернуться на главную</BackButton>
+			<Link href={'/'}> <BackButton>Вернуться на главную</BackButton></Link>
 		</GameDetailsWrapper>
 	);
 };
